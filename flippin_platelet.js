@@ -36,11 +36,28 @@ if (!window.FlippinPlatelet) {
     page_height: function() {
       return document.documentElement.clientHeight;
     },
+    asset_base_url: function() {
+      var current_script;
+      current_script = document.currentScript;
+      if ((current_script != null ? current_script.src : void 0) && current_script.src.indexOf('://') >= 0) {
+        return current_script.src.replace(/\/flippin_platelet\.js(?:\?.*)?$/, '');
+      }
+      return "https://reinforcezwei.github.io/flippin-platelet";
+    },
     // 讀圖路線
     prepareFromImage: function() {
       return new Promise(function(resolve, reject) {
-        var images_path, promises;
-        images_path = ["https://reinforce.moe/anone/res/p_00000.png", "https://reinforce.moe/anone/res/p_00001.png", "https://reinforce.moe/anone/res/p_00002.png", "https://reinforce.moe/anone/res/p_00003.png", "https://reinforce.moe/anone/res/p_00004.png", "https://reinforce.moe/anone/res/p_00005.png", "https://reinforce.moe/anone/res/p_00006.png", "https://reinforce.moe/anone/res/p_00007.png", "https://reinforce.moe/anone/res/p_00008.png", "https://reinforce.moe/anone/res/p_00009.png", "https://reinforce.moe/anone/res/p_00010.png", "https://reinforce.moe/anone/res/p_00011.png", "https://reinforce.moe/anone/res/p_00000.png"];
+        var asset_base, i, images_path, promises;
+        asset_base = FlippinPlatelet.asset_base_url();
+        images_path = (function() {
+          var j, results;
+          results = [];
+          for (i = j = 0; j <= 11; i = ++j) {
+            results.push(asset_base + "/res/p_" + ("00000" + i).slice(-5) + ".png");
+          }
+          results.push(asset_base + "/res/p_00000.png");
+          return results;
+        })();
         promises = images_path.map(function(x) {
           var img;
           img = document.createElement('img');
