@@ -2,6 +2,8 @@
 
 A modern TypeScript reimplementation of the rescued `flippin_platelet.js` bookmarklet animation.
 
+Original website: https://anohito.tw/thisUnitIsAFlippinPlatelet/ (no longer available).
+
 It injects a full-screen canvas overlay and animates platelet sprites that flip when touched by mouse or touch input.
 
 ## Tech stack
